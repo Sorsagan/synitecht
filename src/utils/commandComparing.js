@@ -1,15 +1,15 @@
-module.exports = (existing, local) => {
+module.exports = (existingCommand, localCommand) => {
   const changed = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
   if (
-    changed(existing.name, local.data.name) ||
-    changed(existing.description, local.data.description)
+    changed(existingCommand.name, localCommand.data.name) ||
+    changed(existingCommand.description, localCommand.data.description)
   ) {
     return true;
   }
 
   const optionsChanged = changed(
-    optionsArray(existing),
-    optionsArray(local.data)
+    optionsArray(existingCommand),
+    optionsArray(localCommand.data)
   );
   return optionsChanged;
 
