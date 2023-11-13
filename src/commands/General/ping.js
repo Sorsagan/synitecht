@@ -7,9 +7,9 @@ module.exports = {
     .setDMPermission(false)
     .addSubcommandGroup((subcommandgroup) =>
       subcommandgroup
-        .setName("test")
+        .setName("yarak")
         .setDescription("Test subcommand group")
-        .addSubcommand((subcommand) => {
+        .addSubcommand((subcommand) => 
           subcommand
             .setName("subcommand1")
             .setDescription("Subcommand 1")
@@ -17,25 +17,36 @@ module.exports = {
               option
                 .setName("user")
                 .setDescription("User to ping")
-                .setRequired(true)
-            );
-        })
-        .addSubcommand((subcommand) => {
+            )
+        )
+        .addSubcommand((subcommand) => 
           subcommand
             .setName("subcommand2")
             .setDescription("Subcommand 2")
+            .addStringOption((option) =>
+            option
+            .setName("string")
+            .setDescription("String to send")
+            )
             .addUserOption((option) =>
               option
-                .setName("user")
-                .setDescription("User to ping")
-                .setRequired(true)
-            );
-        })
-    ).toJSON(),
-    userPermission: [PermissionFlagsBits.ADMINISTRATOR],
-    botPermission: [PermissionFlagsBits.ADMINISTRATOR],
+                .setName("user2")
+                .setDescription("User to ping 2")
+            )
+            )
+    )
+    .addSubcommand((subcommand) =>
+    subcommand
+    .setName("message")
+    .setDescription("Message subcommand")
+    )
+    .toJSON(),
+    userPermissions: [PermissionFlagsBits.Administrator],
+    botPermissions: [PermissionFlagsBits.Administrator],
+    testMode: true,
+    devOnly: true,
 
     run: (client, interaction) => {
-        return interaction.reply({content: "Pong!"})
+      return interaction.reply("Pong!");
     }
 };

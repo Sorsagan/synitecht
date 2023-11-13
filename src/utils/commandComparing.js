@@ -1,32 +1,59 @@
-module.exports = (existingCommand, localCommand) => {
-  const {
-    name: existingName,
-    description: existingDescription,
-    options: existingOptions = [],
-  } = existingCommand;
-  const {
-    data: {
-      name: localName,
-      description: localDescription,
-      options: localOptions = [],
-    },
-  } = localCommand;
-  const hasDifference = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
-  const checkOptions = (existingOptions, localOptions) => {
-    return localOptions.some((localOption) => {
-      const existingOption = existingOptions.find(
-        (opt) => opt.name === localOption.name
-      );
-      if (!existingOption) return true;
-      return hasDifference(localOption, existingOption);
-    });
-  };
+module.exports = (existing, local) => {
+  const changed = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
   if (
-    existingName !== localName ||
-    existingDescription !== localDescription ||
-    checkOptions(existingOptions, localOptions)
+    changed(existing.name, local.data.name) ||
+    changed(existing.description, local.data.description)
   ) {
     return true;
   }
-  return false;
+
+  const optionsChanged = changed(
+    optionsArray(existing),
+    optionsArray(local.data)
+  );
+  return optionsChanged;
+
+  function optionsArray(cmd) {
+    const cleanObj = (obj) => {
+      for (const key in obj) {
+        if (typeof obj[key] === "object") {
+          cleanObj(obj[key]);
+          if (
+            !obj[key] ||
+            (Array.isArray(obj[key]) && !obj[key].length === 0)
+          ) {
+            delete obj[key];
+          }
+        } else if (obj[key] === undefined) {
+          delete obj[key];
+        }
+      }
+    };
+    const normalizeObject = (input) => {
+      if (Array.isArray(input)) {
+        return input.map((item) => normalizeObject(item));
+      }
+
+      const normnalizedItem = {
+        type: input.type,
+        name: input.name,
+        description: input.description,
+        options: input.options ? normalizeObject(input.options) : undefined,
+        required: input.required,
+      };
+
+      return normnalizedItem;
+    };
+    return (cmd.options || []).map((option) => {
+      let cleanedOption = JSON.parse(JSON.stringify(option));
+      cleanedOption.options
+        ? (cleanedOption.options = normalizeObject(cleanedOption.options))
+        : (cleanedOption = normalizeObject(cleanedOption));
+        cleanObj(cleanedOption)
+        return {
+          ...cleanedOption,
+          choices: cleanedOption.choices ? JSON.stringify(cleanedOption.choices.map((c) => c.value)) : null,
+        }
+    });
+  }
 };
