@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, ActionRow, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -31,6 +31,10 @@ module.exports = {
       return interaction.reply("You cannot ban yourself.");//Self explanatory.
     } else {    
       if (targetuser && targetuser.bannable) {
+        const banButtons = new ActionRow().setComponents([
+          new ButtonBuilder().setCustomId("banBtn").setLabel("Server Ban").setStyle(ButtonStyle.Danger),
+          new ButtonBuilder().setCustomId("cancelBtn").setLabel("Cancel").setStyle(ButtonStyle.Secondary),
+        ])
         targetuser.ban({ reason: reason});
         return interaction.reply(`${targetuser} has been banned.\nReason: ${reason}`);
       }

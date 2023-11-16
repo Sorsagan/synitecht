@@ -1,11 +1,9 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { ContextMenuCommandBuilder, ApplicationCommandType, SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
-  data: new SlashCommandBuilder()
+  data: new ContextMenuCommandBuilder()
     .setName("test")
-    .setDescription("Send a ping to the bot")
-    .setDMPermission(false)
-    .toJSON(),
+    .setType(ApplicationCommandType.Message),
     userPermissions: [PermissionFlagsBits.Administrator],
     botPermissions: [PermissionFlagsBits.Administrator],
 
