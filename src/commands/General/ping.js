@@ -45,6 +45,7 @@ module.exports = {
     botPermissions: [PermissionFlagsBits.Administrator],
     testMode: true,
     devOnly: true,
+    deleted: true,
 
     run: (client, interaction) => {
       return interaction.reply("Pong!");

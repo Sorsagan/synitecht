@@ -71,6 +71,6 @@ module.exports = {
           })
           dataTemp.save();
           target.ban({ reason: reason });
-          return interaction.reply(`${target} has been banned.\nReason: ${reason}`);
+          return interaction.reply(`${target} has been banned for ${duration}.\nReason: ${reason}`);
     }}}
 };
