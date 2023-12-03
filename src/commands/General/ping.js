@@ -48,6 +48,8 @@ module.exports = {
     deleted: true,
 
     run: (client, interaction) => {
-      return interaction.reply("Pong!");
+      if(interaction.options.getSubcommandGroup() === 'yarak'){
+        return interaction.reply("Yarak");
+      }
     }
 };

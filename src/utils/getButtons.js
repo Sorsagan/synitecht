@@ -10,7 +10,7 @@ module.exports = (exceptions = []) => {
             const buttonObject = require(buttonFile);
 
             if(exceptions.includes(buttonObject.name)) continue;
-            localContextMenus.push(buttonObject);
+            buttons.push(buttonObject);
         }
     return buttons;
 }

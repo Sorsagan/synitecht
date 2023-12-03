@@ -2,6 +2,7 @@
     "embedColorSucces": "#00D26A",
     "embedColorWarning": "FFCC4D",
     "embedColorError": "FB2F61",
+    "embedColorInfo": "00BFFF",
   
     "embedErrorMessage": "An error occurred!",
   
