@@ -8,7 +8,7 @@ module.exports = {
     botPermissions: [PermissionFlagsBits.ManageMessages],
 
     run: async (client, interaction) => {
-      const{ message, channel, guildId, guild, user } = interaction;
+      const{ guildId } = interaction;
       try {
         const data = await moderationSchema.findOne({ guildId: guildId });
 
