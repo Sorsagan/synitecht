@@ -1,6 +1,7 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema } = require("mongoose");
 
-const moderationSchema = new Schema({
+const moderationSchema = new Schema(
+  {
     logchannel: String,
     userId: String,
     guildId: String,
@@ -8,6 +9,8 @@ const moderationSchema = new Schema({
     reason: String,
     expirationTime: Date,
     type: String,
-}, {strict: false})
+  },
+  { strict: false }
+);
 
-module.exports = model('moderation', moderationSchema);
+module.exports = model("moderation", moderationSchema);

@@ -1,12 +1,15 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema } = require("mongoose");
 
-const autoModerationSchema = new Schema({
+const autoModerationSchema = new Schema(
+  {
     logchannel: String,
     guildId: String,
     deleteInvites: Boolean,
     deleteLinks: Boolean,
     deleteMassMentions: Boolean,
     blockSpam: Boolean,
-}, {strict: false})
+  },
+  { strict: false }
+);
 
-module.exports = model('autoModeration', autoModerationSchema);
+module.exports = model("autoModeration", autoModerationSchema);

@@ -91,19 +91,42 @@ module.exports = {
           return interaction.reply("Automod is not setup.");
         } else if (dataAutoMod) {
           const embedBtns = new ActionRowBuilder().setComponents(
-            new ButtonBuilder().setCustomId("deleteInvitesBtn").setLabel("Delete Invites").setStyle(ButtonStyle.Danger).setEmoji("📩"),
-            new ButtonBuilder().setCustomId("deleteLinksBtn").setLabel("Delete Links").setStyle(ButtonStyle.Danger).setEmoji("🔗"),
-            new ButtonBuilder().setCustomId("deleteMassMentionsBtn").setLabel("Delete Mass Mentions").setStyle(ButtonStyle.Danger).setEmoji("🗣️"),
-            new ButtonBuilder().setCustomId("blockSpamBtn").setLabel("Block Spam").setStyle(ButtonStyle.Danger).setEmoji("🚫"),
-            new ButtonBuilder().setCustomId("cancelBtn").setLabel("Cancel").setStyle(ButtonStyle.Secondary).setEmoji("❌"),
-          )
+            new ButtonBuilder()
+              .setCustomId("deleteInvitesBtn")
+              .setLabel("Delete Invites")
+              .setStyle(ButtonStyle.Danger)
+              .setEmoji("📩"),
+            new ButtonBuilder()
+              .setCustomId("deleteLinksBtn")
+              .setLabel("Delete Links")
+              .setStyle(ButtonStyle.Danger)
+              .setEmoji("🔗"),
+            new ButtonBuilder()
+              .setCustomId("deleteMassMentionsBtn")
+              .setLabel("Delete Mass Mentions")
+              .setStyle(ButtonStyle.Danger)
+              .setEmoji("🗣️"),
+            new ButtonBuilder()
+              .setCustomId("blockSpamBtn")
+              .setLabel("Block Spam")
+              .setStyle(ButtonStyle.Danger)
+              .setEmoji("🚫"),
+            new ButtonBuilder()
+              .setCustomId("cancelBtn")
+              .setLabel("Cancel")
+              .setStyle(ButtonStyle.Secondary)
+              .setEmoji("❌")
+          );
           const embed = new EmbedBuilder()
             .setTitle("Auto Mod Settings")
             .setColor(mConfig.embedColorInfo)
             .setDescription(
               `**Delete Invites:** ${dataAutoMod.deleteInvites}\n**Delete Links:** ${dataAutoMod.deleteLinks}\n**Delete Mass Mentions:** ${dataAutoMod.deleteMassMentions}\n**Block Spam:** ${dataAutoMod.blockSpam}`
             );
-          return interaction.reply({ embeds: [embed], components: [embedBtns] });
+          return interaction.reply({
+            embeds: [embed],
+            components: [embedBtns],
+          });
         }
         break;
     }

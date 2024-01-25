@@ -1,10 +1,10 @@
-const { Collection } = require('discord.js');
-const moderationSchema = require('../../schemas/moderation');
+const { Collection } = require("discord.js");
+const moderationSchema = require("../../schemas/moderation");
 
 module.exports = async (client) => {
   setInterval(async () => {
     // Fetch all bans from the database
-    const bans = await moderationSchema.find({ type: 'tempban' });
+    const bans = await moderationSchema.find({ type: "tempban" });
 
     // Iterate over each ban
     bans.forEach(async (ban) => {

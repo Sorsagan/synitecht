@@ -49,11 +49,13 @@ module.exports = (existingCommand, localCommand) => {
       cleanedOption.options
         ? (cleanedOption.options = normalizeObject(cleanedOption.options))
         : (cleanedOption = normalizeObject(cleanedOption));
-        cleanObj(cleanedOption)
-        return {
-          ...cleanedOption,
-          choices: cleanedOption.choices ? JSON.stringify(cleanedOption.choices.map((c) => c.value)) : null,
-        }
+      cleanObj(cleanedOption);
+      return {
+        ...cleanedOption,
+        choices: cleanedOption.choices
+          ? JSON.stringify(cleanedOption.choices.map((c) => c.value))
+          : null,
+      };
     });
   }
 };

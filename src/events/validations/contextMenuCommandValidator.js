@@ -10,7 +10,9 @@ module.exports = async (client, interaction) => {
   const localContextMenus = getLocalContextMenus();
 
   try {
-    const menuObject = localContextMenus.find((cmd) => cmd.data.name === interaction.commandName);
+    const menuObject = localContextMenus.find(
+      (cmd) => cmd.data.name === interaction.commandName
+    );
     if (!menuObject) return;
 
     if (menuObject.devOnly) {
@@ -20,8 +22,8 @@ module.exports = async (client, interaction) => {
           .setDescription(`${mConfig.commandDevOnly}`);
         interaction.reply({ embeds: [rEmbed], ephemeral: true });
         return;
-      };
-    };
+      }
+    }
 
     if (menuObject.testMode) {
       if (interaction.guild.id !== testServerId) {
@@ -30,39 +32,39 @@ module.exports = async (client, interaction) => {
           .setDescription(`${mConfig.commandTestMode}`);
         interaction.reply({ embeds: [rEmbed], ephemeral: true });
         return;
-      };
-    };
+      }
+    }
 
     if (menuObject.userPermissions?.length) {
       for (const permission of menuObject.userPermissions) {
         if (interaction.member.permissions.has(permission)) {
           continue;
-        };
+        }
         const rEmbed = new EmbedBuilder()
           .setColor(`${mConfig.embedColorError}`)
           .setDescription(`${mConfig.userNoPermissions}`);
         interaction.reply({ embeds: [rEmbed], ephemeral: true });
         return;
-      };
-    };
+      }
+    }
 
     if (menuObject.botPermissions?.length) {
       for (const permission of menuObject.botPermissions) {
         const bot = interaction.guild.members.me;
         if (bot.permissions.has(permission)) {
           continue;
-        };
+        }
         const rEmbed = new EmbedBuilder()
           .setColor(`${mConfig.embedColorError}`)
           .setDescription(`${mConfig.botNoPermissions}`);
         interaction.reply({ embeds: [rEmbed], ephemeral: true });
         return;
-      };
-    };
+      }
+    }
 
     await menuObject.run(client, interaction);
   } catch (err) {
     console.log(`An error occurred! ${err}`.red);
     console.log(err);
-  };
+  }
 };

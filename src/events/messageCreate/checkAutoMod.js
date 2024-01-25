@@ -17,26 +17,30 @@ module.exports = async (client) => {
     if (!message.guild) return;
 
     const dataAutoMod = await autoModerationSchema.findOne({
-    guildId: message.guild.id,
+      guildId: message.guild.id,
     });
 
     if (!dataAutoMod) return;
 
     const deleteMessage = async (reason) => {
-        try {
-          const logChannel = message.guild.channels.cache.get(dataAutoMod.logchannel);
-          const content = message.content;
-          const author = message.author.tag;
-          await message.delete();
-          logChannel.send(`Deleted a message containing a ${reason} from ${author}:\n\`\`\`${content}\`\`\``);
-        } catch (error) {
-          if (error instanceof DiscordAPIError && error.code === 10008) {
-            console.log("Message was already deleted.");
-          } else {
-            throw error;
-          }
+      try {
+        const logChannel = message.guild.channels.cache.get(
+          dataAutoMod.logchannel
+        );
+        const content = message.content;
+        const author = message.author.tag;
+        await message.delete();
+        logChannel.send(
+          `Deleted a message containing a ${reason} from ${author}:\n\`\`\`${content}\`\`\``
+        );
+      } catch (error) {
+        if (error instanceof DiscordAPIError && error.code === 10008) {
+          console.log("Message was already deleted.");
+        } else {
+          throw error;
         }
-      };
+      }
+    };
 
     if (dataAutoMod.deleteLinks && message.content.includes("http")) {
       await deleteMessage("link");

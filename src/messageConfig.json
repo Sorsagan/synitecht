@@ -1,18 +1,18 @@
 {
-    "embedColorSucces": "#00D26A",
-    "embedColorWarning": "FFCC4D",
-    "embedColorError": "FB2F61",
-    "embedColorInfo": "00BFFF",
-  
-    "embedErrorMessage": "An error occurred!",
-  
-    "commandDevOnly": "This command can only be executed by developers.",
-    "commandTestMode": "This is in development and cannot be executed in this server.",
-    "commandPremiumOnly": "This command can only be executed by premium users.",
-  
-    "userNoPermissions": "You do not have enough permissions to execute this command.",
-    "botNoPermissions": "I do not have enough permissions to execute this command.",
-    "hasHigherRolePosition": "You cannot execute this command on someone with a higher role position than you.",
-    "unableToInteractWithYourself": "You cannot execute this command on yourself.",
-    "cannotUseButton": "You cannot use this button."
-  }
+  "embedColorSucces": "#00D26A",
+  "embedColorWarning": "FFCC4D",
+  "embedColorError": "FB2F61",
+  "embedColorInfo": "00BFFF",
+
+  "embedErrorMessage": "An error occurred!",
+
+  "commandDevOnly": "This command can only be executed by developers.",
+  "commandTestMode": "This is in development and cannot be executed in this server.",
+  "commandPremiumOnly": "This command can only be executed by premium users.",
+
+  "userNoPermissions": "You do not have enough permissions to execute this command.",
+  "botNoPermissions": "I do not have enough permissions to execute this command.",
+  "hasHigherRolePosition": "You cannot execute this command on someone with a higher role position than you.",
+  "unableToInteractWithYourself": "You cannot execute this command on yourself.",
+  "cannotUseButton": "You cannot use this button."
+}

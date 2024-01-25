@@ -27,7 +27,7 @@ module.exports = {
       if (targetuser && targetuser.kickable) {
         targetuser.kick();
         return interaction.reply(`${targetuser} has been kicked.`);
-    }
+      }
     }
   },
 };
