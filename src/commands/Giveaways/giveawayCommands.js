@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const ms = require("ms");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("giveaway")
@@ -77,7 +78,7 @@ module.exports = {
       subcommand
         .setName("pause")
         .setDescription("Pause a giveaway.")
-        .addStringOption((option) => 
+        .addStringOption((option) =>
           option
             .setName("message-id")
             .setDescription("The message ID of the giveaway.")
@@ -91,14 +92,12 @@ module.exports = {
         .addStringOption((option) =>
           option
             .setName("message-id")
-            .setDescription("The message ID of the giveaway.") 
+            .setDescription("The message ID of the giveaway.")
             .setRequired(true)
         )
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName("list")
-        .setDescription("List all giveaways.")
+      subcommand.setName("list").setDescription("List all giveaways.")
     )
     .toJSON(),
   userPermissions: [PermissionFlagsBits.Administrator],
@@ -125,7 +124,9 @@ module.exports = {
             giveaway: "🎉🎉 **GIVEAWAY** 🎉🎉",
             giveawayEnded: "🎉🎉 **GIVEAWAY ENDED** 🎉🎉",
             timeRemaining: "Time remaining: **{duration}**!",
-            inviteToParticipate: `React with 🎉 to participate!${role ? ` Only members with the ${role.name} role can win.` : ""}`, //if role is specified in giveaway it supposed to print out but it dont fix it 
+            inviteToParticipate: `React with 🎉 to participate!${
+              role ? ` Only members with the ${role.name} role can win.` : ""
+            }`, //if role is specified in giveaway it supposed to print out but it dont fix it
             winMessage: "Congratulations, {winners}! You won **{this.prize}**!",
             embedFooter: "Giveaways",
             noWinner: "Giveaway cancelled, no valid participations.",
@@ -140,7 +141,8 @@ module.exports = {
               pluralS: false,
             },
             exemptMembers: (member) => {
-              if (role && !member.roles.cache.has(role.id)) { // this dont work
+              if (role && !member.roles.cache.has(role.id)) {
+                // this dont work
                 return true;
               }
               return false;
@@ -250,7 +252,9 @@ module.exports = {
         const giveawaysList = giveaways
           .map(
             (g) =>
-              `**Prize:** ${g.prize}\n**Channel:** <#${g.channelId}>\n**Winners:** ${g.winnerCount}\n**Ends At:** <t:${Math.floor(
+              `**Prize:** ${g.prize}\n**Channel:** <#${
+                g.channelId
+              }>\n**Winners:** ${g.winnerCount}\n**Ends At:** <t:${Math.floor(
                 g.endAt / 1000
               )}:R>\n**Message ID:** ${g.messageId}\n`
           )
@@ -266,6 +270,7 @@ module.exports = {
             ephemeral: true,
           });
         }
-     }}
+      }
+    }
   },
 };
