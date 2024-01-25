@@ -13,7 +13,7 @@ const mConfig = require("../../messageConfig.json");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("automod")
-    .setDescription("Send a ping to the bot")
+    .setDescription("Commands related to automod.")
     .setDMPermission(false)
     .addSubcommand((subcommand) =>
       subcommand
