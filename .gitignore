@@ -96,3 +96,5 @@ dist
 .svelte-kit
 
 /giveaways.json
+/package-lock.json
+/nodemon.json
