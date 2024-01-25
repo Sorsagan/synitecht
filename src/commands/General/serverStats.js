@@ -16,7 +16,6 @@ module.exports = {
     .setDescription(`Server stats for **${interaction.guild.name}**`)
     .addFields({ name: 'Server ID', value: `${interaction.guild.id}` },
     { name: 'Server Owner', value: `${interaction.guild.ownerId}` },
-    { name: 'Server Region', value: `${interaction.guild.region}` },
     { name: 'Server Created', value: `${interaction.guild.createdAt}` },
     { name: 'Server Members', value: `${interaction.guild.memberCount}`},
     { name: 'Server Channels', value: `${interaction.guild.channels.cache.size}` },
