@@ -114,6 +114,11 @@ module.exports = {
       const duration = interaction.options.getString("duration");
       const durationMs = ms(duration);
       const role = interaction.options.getRole("role");
+      if (channel.type !== "GUILD_TEXT")
+        return interaction.reply({
+          content: "The channel you mentioned is not a text channel.",
+          ephemeral: true,
+        });
       client.giveawaysManager
         .start(channel, {
           prize: prize,
@@ -142,7 +147,7 @@ module.exports = {
             },
             exemptMembers: (member) => {
               if (role && !member.roles.cache.has(role.id)) {
-                // this dont work
+                // i guess it work??
                 return true;
               }
               return false;

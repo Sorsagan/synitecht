@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/voice": "^0.16.1",
+    "axios": "^1.6.7",
     "colors": "^1.4.0",
     "discord-giveaways": "^6.0.1",
     "discord.js": "^14.13.0",
