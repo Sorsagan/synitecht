@@ -40,12 +40,12 @@ module.exports = {
     const prompt = interaction.options.getString("prompt");
     const temperature = interaction.options.getNumber("temperature") || 0.7;
     if (prompt.length > 2048)
-      return interaction.reply({
+      return interaction.followUp({
         content: `The prompt is too long. Please make sure the prompt is less than 2048 characters.`,
         ephemeral: true,
       });
     if (isNaN(temperature) || temperature < 0.1 || temperature > 1)
-      return interaction.reply({
+      return interaction.followUp({
         content: `The temperature must be between 0.1 and 1.`,
         ephemeral: true,
       });
@@ -53,7 +53,7 @@ module.exports = {
       await createApiRequestAndReply(temperature, prompt, interaction);
     } catch (error) {
       console.log(error);
-      interaction.reply({
+      interaction.followUp({
         content: `An error occured. Please try again later.`,
         ephemeral: true,
       });
