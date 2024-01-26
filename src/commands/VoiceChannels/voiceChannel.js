@@ -31,6 +31,28 @@ module.exports = {
         .setName("dashboard")
         .setDescription("Dashboard for voicechat settings.")
     )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("add")
+        .setDescription("Add a user to the voice channel.")
+        .addUserOption((option) =>
+          option
+            .setName("user")
+            .setDescription("The user to add to the voice channel.")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("remove")
+        .setDescription("Remove a user from the voice channel.")
+        .addUserOption((option) =>
+          option
+            .setName("user")
+            .setDescription("The user to remove from the voice channel.")
+            .setRequired(true)
+        )
+    )
     .toJSON(),
   userPermissions: [PermissionFlagsBits.Administrator],
   botPermissions: [PermissionFlagsBits.Administrator],
@@ -95,11 +117,6 @@ module.exports = {
       if (dataVC) {
         const embedBtns = new ActionRowBuilder().setComponents(
           new ButtonBuilder()
-            .setCustomId("cancelBtn")
-            .setLabel("Cancel")
-            .setStyle(ButtonStyle.Danger)
-            .setEmoji("❌"),
-          new ButtonBuilder()
             .setCustomId("voiceChannelSettingsBtn")
             .setLabel("Settings")
             .setStyle(ButtonStyle.Secondary)
@@ -110,15 +127,10 @@ module.exports = {
             .setStyle(ButtonStyle.Danger)
             .setEmoji("🗑️"),
           new ButtonBuilder()
-            .setCustomId("voiceChannelAddUserBtn")
-            .setLabel("Add User")
-            .setStyle(ButtonStyle.Success)
-            .setEmoji("➕"),
-          new ButtonBuilder()
-            .setCustomId("voiceChannelRemoveUserBtn")
-            .setLabel("Remove User")
+            .setCustomId("cancelBtn")
+            .setLabel("Cancel")
             .setStyle(ButtonStyle.Danger)
-            .setEmoji("➖")
+            .setEmoji("❌")
         );
         const channel = interaction.guild.channels.cache.get(
           dataOwnerVC.channelId
@@ -137,6 +149,30 @@ module.exports = {
           embeds: [embed],
           components: [embedBtns],
         });
+      }
+    }
+    if (interaction.options.getSubcommand() === "add") {
+      let dataOwnerVC = await voiceChannelOwnerSchema.findOne();
+      const user = interaction.options.getUser("user");
+      const channel = interaction.guild.channels.cache.get(
+        dataOwnerVC.channelId
+      );
+
+      if (channel && user) {
+        await channel.permissionOverwrites.create(user.id, { Connect: true });
+        interaction.reply(`Added ${user.username} to the voice channel.`);
+      }
+    }
+    if (interaction.options.getSubcommand() === "remove") {
+      let dataOwnerVC = await voiceChannelOwnerSchema.findOne();
+      const user = interaction.options.getUser("user");
+      const channel = interaction.guild.channels.cache.get(
+        dataOwnerVC.channelId
+      );
+
+      if (channel && user) {
+        await channel.permissionOverwrites.create(user.id, { Connect: false });
+        interaction.reply(`Removed ${user.username} from the voice channel.`);
       }
     }
   },
