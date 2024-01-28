@@ -4,7 +4,6 @@ const voiceChannelSchema = new Schema(
   {
     guildId: String,
     channelId: String,
-    ownerId: String,
   },
   { strict: false }
 );

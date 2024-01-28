@@ -149,6 +149,7 @@ setInterval(async () => {
       const channel = client.channels.cache.get(channelData.channelId);
       if (channel) {
         if (channel.members.size === 0) {
+          console.log(`Timeout for channel ${channelData.channelId}. Channel has ${channel.members.size} members.`);
           await channel.delete();
           await channelTimeoutSchema.deleteOne({
             channelId: channelData.channelId,

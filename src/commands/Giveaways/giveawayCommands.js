@@ -114,7 +114,7 @@ module.exports = {
       const duration = interaction.options.getString("duration");
       const durationMs = ms(duration);
       const role = interaction.options.getRole("role");
-      if (channel.type !== "GUILD_TEXT")
+      if (channel.type !== 0)
         return interaction.reply({
           content: "The channel you mentioned is not a text channel.",
           ephemeral: true,
