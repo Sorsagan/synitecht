@@ -38,12 +38,10 @@ module.exports = {
                 })
                 await channel.members.remove(ticket.ticketMemberId);
             }
-            await ticketSchema.findOneAndUpdate({
+            await ticketSchema.findOneAndDelete({
                 guildId: guild.id,
                 ticketChannelId: channel.id,
-                closed: false,
-            }, {
-                closed: true,
+                closed: false,  
             })
 
             await channel.setArchived(true);

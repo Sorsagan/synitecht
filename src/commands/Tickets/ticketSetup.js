@@ -69,7 +69,7 @@ module.exports = {
 
             const ticketSetupEmbed = new EmbedBuilder()
                 .setTitle('Ticket System')
-                .setDescription('Ticket system setup successfully.')
+                .setDescription('Ticket system setup successfully.\n**Don\'t forget to give members the permmision to send messages in threads.**')
                 .addFields(
                     { name: 'Ticket Channel', value: `${ticketChannel}`, inline: true },
                     { name: 'Feedback Channel', value: `${feedbackChannel}`, inline: true },
