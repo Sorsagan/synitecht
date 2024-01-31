@@ -1,4 +1,4 @@
-const autoModerationSchema = require("../../schemas/autoModeration");
+const autoModerationSchema = require("../../schemas/autoModerationSchema");
 const { DiscordAPIError } = require("discord.js");
 
 // Set to keep track of processed message IDs

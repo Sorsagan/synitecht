@@ -7,7 +7,7 @@ const {
   ButtonBuilder,
   ButtonStyle,
 } = require("discord.js");
-const autoModerationSchema = require("../../schemas/autoModeration");
+const autoModerationSchema = require("../../schemas/autoModerationSchema");
 const mConfig = require("../../messageConfig.json");
 
 module.exports = {

@@ -1,5 +1,5 @@
 const { PermissionFlagsBits, EmbedBuilder } = require("discord.js");
-const moderationSchema = require("../schemas/autoModeration");
+const moderationSchema = require("../schemas/autoModerationSchema");
 const mConfig = require("../messageConfig.json");
 
 module.exports = {
