@@ -2,8 +2,8 @@
 # Synitecht
 
 ![Server Count](https://img.shields.io/badge/dynamic/json?color=blue&label=servers&query=%24.server_count&url=https%3A%2F%2Fdiscord-bot-list.com%2Fapi%2Fbots%2F1007699480671432704)
-![Bot Status](https://img.shields.io/endpoint?url=https%3A%2F%2Fdev.discordprofiles.me%2Fapi%2Fbot%2Fstatus%2F1007699480671432704)
-![Latest Release](https://img.shields.io/github/v/release/sorsagan/synitecht)
+![GitHub stars](https://img.shields.io/github/stars/Sorsagan/synitecht?style=social)
+![Latest Release](https://img.shields.io/github/v/release/Sorsagan/synitecht)
 ![Node.js Version](https://img.shields.io/node/v/synitecht)
 
 ## Description
