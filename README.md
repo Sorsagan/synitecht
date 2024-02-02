@@ -5,6 +5,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/Sorsagan/synitecht?style=social)
 ![Latest Release](https://img.shields.io/github/v/release/Sorsagan/synitecht)
 ![Node.js Version](https://img.shields.io/node/v/synitecht)
+[![Discord Server](https://img.shields.io/discord/882383171323314186?label=Join%20our%20Discord&logo=discord&logoColor=white&color=7289DA)](https://discord.gg/khNBFw8DrU)
 
 ## Description
 
