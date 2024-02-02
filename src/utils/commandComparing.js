@@ -1,3 +1,5 @@
+// Code snippet inspired by [ The North Solution ](https://www.youtube.com/watch?v=et_bzG3WJDg)
+
 module.exports = (existingCommand, localCommand) => {
   const changed = (a, b) => JSON.stringify(a) !== JSON.stringify(b);
   if (

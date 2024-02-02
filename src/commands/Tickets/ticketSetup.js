@@ -1,3 +1,5 @@
+// Code snippet inspired by [ The North Solution ](https://www.youtube.com/watch?v=lNRGe5Xy0FM)
+
 const {
   SlashCommandBuilder,
   PermissionFlagsBits,
