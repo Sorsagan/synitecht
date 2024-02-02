@@ -67,7 +67,13 @@ module.exports = {
         .setCustomId("voiceChannelSettingsLockStatusBtn")
         .setLabel("Lock Status")
         .setStyle(ButtonStyle.Secondary)
-        .setEmoji("🔊"),
+        .setEmoji("🔒"),
+      new ButtonBuilder()
+        .setCustomId("voiceChannelSettingsUserLimitBtn")
+        .setLabel("User Limit")
+        .setStyle(ButtonStyle.Secondary)
+        .setEmoji("👥")
+        .setDisabled(true),
     )
     await interaction.followUp({
       embeds: [voiceChannelSettingsEmbed],
