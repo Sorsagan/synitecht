@@ -63,6 +63,11 @@ module.exports = {
         .setLabel("Channel Name")
         .setStyle(ButtonStyle.Secondary)
         .setEmoji("📝"),
+      new ButtonBuilder()
+        .setCustomId("voiceChannelSettingsLockStatusBtn")
+        .setLabel("Lock Status")
+        .setStyle(ButtonStyle.Secondary)
+        .setEmoji("🔊"),
     )
     await interaction.followUp({
       embeds: [voiceChannelSettingsEmbed],

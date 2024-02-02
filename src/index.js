@@ -79,10 +79,8 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
         guildId: newChannel.guild.id,
       });
     }
-    if (
-      oldState.channel &&
-      oldState.channel.name === `${oldState.member.user.username}'s Channel`
-    ) {
+    const userChannel = await voiceChannelOwnerSchema.findOne({ userId: oldState.member.user.id });
+    if (oldState.channel && userChannel && oldState.channel.id === userChannel.channelId) {
       await channelTimeoutSchema.create({
         channelId: oldState.channelId,
         timeout: Date.now() + 60000,
