@@ -4,7 +4,7 @@
 ![Server Count](https://img.shields.io/badge/dynamic/json?color=blue&label=servers&query=%24.server_count&url=https%3A%2F%2Fdiscord-bot-list.com%2Fapi%2Fbots%2F1007699480671432704)
 ![GitHub stars](https://img.shields.io/github/stars/Sorsagan/synitecht?style=social)
 ![Latest Release](https://img.shields.io/github/v/release/Sorsagan/synitecht)
-![Node.js Version](https://img.shields.io/node/v/synitecht)
+[![Node.js Version](https://img.shields.io/github/package-json/v/sorsagan/synitecht/main?label=Node.js)](https://nodejs.org/)
 [![Discord Server](https://img.shields.io/discord/882383171323314186?label=Join%20our%20Discord&logo=discord&logoColor=white&color=7289DA)](https://discord.gg/khNBFw8DrU)
 
 ## Description
