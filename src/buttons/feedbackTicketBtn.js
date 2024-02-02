@@ -1,4 +1,4 @@
-const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, ChannelType, EmbedBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
 
 module.exports = {
     customId: 'feedbackTicketBtn',

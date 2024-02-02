@@ -1,7 +1,6 @@
 // Code snippet inspired by [ The North Solution ](https://www.youtube.com/watch?v=xnTc-864uAI)
 const {
   SlashCommandBuilder,
-  PermissionFlagsBits,
   ChatpromptCommandInteraction,
   EmbedBuilder,
   codeBlock,

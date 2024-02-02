@@ -1,4 +1,4 @@
-const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle, ChannelType, EmbedBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require("discord.js");
+const { EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 const ticketSchema = require("../schemas/ticketSchema");
 const ticketSetupSchema = require("../schemas/ticketSetupSchema");
 

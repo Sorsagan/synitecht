@@ -1,4 +1,3 @@
-const { PermissionFlagsBits } = require("discord.js");
 const voiceChannelOwnerSchema = require("../schemas/voiceChannelOwnerSchema.js");
 const channelTimeoutSchema = require("../schemas/channelTimeoutSchema.js");
 

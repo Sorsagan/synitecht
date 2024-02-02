@@ -172,6 +172,7 @@ module.exports = {
           interaction.reply({ content: "Giveaway ended.", ephemeral: true });
         })
         .catch((err) => {
+          console.log(err);
           interaction.reply({
             content:
               "No giveaway found for " +
@@ -188,6 +189,7 @@ module.exports = {
           interaction.reply({ content: "Giveaway rerolled.", ephemeral: true });
         })
         .catch((err) => {
+          console.log(err);
           interaction.reply({
             content:
               "No giveaway found for " +
@@ -204,6 +206,7 @@ module.exports = {
           interaction.reply({ content: "Giveaway deleted.", ephemeral: true });
         })
         .catch((err) => {
+          console.log(err);
           interaction.reply({
             content:
               "No giveaway found for " +
@@ -220,6 +223,7 @@ module.exports = {
           interaction.reply({ content: "Giveaway paused.", ephemeral: true });
         })
         .catch((err) => {
+          console.log(err);
           interaction.reply({
             content:
               "No giveaway found for " +
@@ -236,6 +240,7 @@ module.exports = {
           interaction.reply({ content: "Giveaway resumed.", ephemeral: true });
         })
         .catch((err) => {
+          console.log(err);
           interaction.reply({
             content:
               "No giveaway found for " +

@@ -1,7 +1,6 @@
 const {
   ContextMenuCommandBuilder,
   ApplicationCommandType,
-  SlashCommandBuilder,
   PermissionFlagsBits,
 } = require("discord.js");
 

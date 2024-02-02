@@ -2,9 +2,6 @@ const {
   PermissionFlagsBits,
   EmbedBuilder,
   ActionRowBuilder,
-  StringSelectMenuBuilder,
-  StringSelectMenuOptionBuilder,
-  ComponentType,
   ButtonBuilder,
   ButtonStyle,
 } = require("discord.js");
