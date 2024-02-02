@@ -49,13 +49,13 @@ Make sure you have the following installed:
 **Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/sorsagan/synitecht.git
 ```
 
 **Navigate to the Project Directory**
 
 ```bash
-cd your-project
+cd synitecht
 ```
 
 **Install Dependencies**
@@ -124,10 +124,10 @@ Our planned features and improvements for future releases.
 
 ### Version 1.0.1 (Patch Release)
 
-- [ ] **Security Patch:**
+- [x] **Security Patch:**
   - Address any reported vulnerabilities to ensure a secure environment.
   
-- [ ] **Minor Improvements:**
+- [x] **Minor Improvements:**
   - Implement small updates and fixes to enhance overall functionality.
 ## Contribute
 
