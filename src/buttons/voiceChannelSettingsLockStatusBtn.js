@@ -23,18 +23,21 @@ module.exports = {
             everyoneRole.id
           );
           const isLocked = permissions
-            ? permissions.deny.has(PermissionFlagsBits.ViewChannel)
+            ? permissions.deny.has(PermissionFlagsBits.ViewChannel) &&
+              permissions.deny.has(PermissionFlagsBits.Connect)
             : false;
 
           if (isLocked) {
             await channel.permissionOverwrites.edit(guildId, {
               ViewChannel: true,
+              Connect: true,
             });
             interaction.reply("Voice Channel is now unlocked.");
           }
           if (!isLocked) {
             await channel.permissionOverwrites.edit(guildId, {
               ViewChannel: false,
+              Connect: false,
             });
             interaction.reply("Voice Channel is now locked.");
           }
