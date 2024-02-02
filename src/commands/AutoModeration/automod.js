@@ -38,8 +38,6 @@ module.exports = {
     .toJSON(),
   userPermissions: [PermissionFlagsBits.Administrator],
   botPermissions: [PermissionFlagsBits.Administrator],
-  testMode: true,
-  devOnly: true,
 
   run: async (client, interaction) => {
     const channel = interaction.options.getChannel("channel");

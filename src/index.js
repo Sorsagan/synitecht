@@ -3,7 +3,7 @@ require("colors");
 const {
   Client,
   GatewayIntentBits,
-  PermissionFlagsBits
+  PermissionFlagsBits,
 } = require("discord.js");
 const eventHandler = require("./handlers/eventHandler");
 const { GiveawaysManager } = require("discord-giveaways");
@@ -46,8 +46,11 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
         guildId: newState.guild.id,
       });
       if (existingChannel) {
-        // The user already has a channel, so don't create a new one
-        return;
+  const existingVoiceChannel = newState.guild.channels.cache.get(existingChannel.channelId);
+  if (existingVoiceChannel) {
+    newState.member.voice.setChannel(existingVoiceChannel);
+  }
+  return;
       }
 
       const username = newState.member.user.username;
@@ -79,12 +82,29 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
         guildId: newChannel.guild.id,
       });
     }
-    const userChannel = await voiceChannelOwnerSchema.findOne({ userId: oldState.member.user.id });
-    if (oldState.channel && userChannel && oldState.channel.id === userChannel.channelId) {
-      await channelTimeoutSchema.create({
+    const userChannel = await voiceChannelOwnerSchema.findOne({
+      userId: oldState.member.user.id,
+    });
+    if (
+      oldState.channel &&
+      userChannel &&
+      oldState.channel.id === userChannel.channelId
+    ) {
+      const existingTimeout = await channelTimeoutSchema.findOne({
         channelId: oldState.channelId,
-        timeout: Date.now() + 60000,
       });
+    
+      if (existingTimeout) {
+        // Update the existing timeout
+        existingTimeout.timeout = Date.now() + 60000;
+        await existingTimeout.save();
+      } else {
+        // Create a new timeout
+        await channelTimeoutSchema.create({
+          channelId: oldState.channelId,
+          timeout: Date.now() + 60000,
+        });
+      }
     }
   } catch (error) {
     console.log(error);
@@ -98,8 +118,14 @@ setInterval(async () => {
       const channel = client.channels.cache.get(channelData.channelId);
       if (channel) {
         if (channel.members.size === 0) {
-          console.log(`Timeout for channel ${channelData.channelId}. Channel has ${channel.members.size} members.`);
-          await channel.delete();
+          console.log(
+            `Timeout for channel ${channelData.channelId}. Channel has ${channel.members.size} members.`
+          );
+          try {
+            await channel.delete();
+          } catch (error) {
+            console.error(`Failed to delete channel: ${error}`);
+          }
           await channelTimeoutSchema.deleteOne({
             channelId: channelData.channelId,
           });

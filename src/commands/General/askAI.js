@@ -8,6 +8,7 @@ const {
 } = require("discord.js");
 const axios = require("axios");
 const NVIDIADeveloperToken = process.env.NVIDIA_API_KEY;
+const cooldowns = new Map();
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -37,7 +38,20 @@ module.exports = {
    * @param {ChatpromptCommandInteraction} interaction
    */
   run: async (client, interaction) => {
+    if (cooldowns.has(interaction.user.id)) {
+      const expirationTime = cooldowns.get(interaction.user.id) + 5000; // 5 seconds cooldown
+      if (Date.now() < expirationTime) {
+        const timeLeft = (expirationTime - Date.now()) / 1000;
+        return interaction.reply(
+          `Please wait ${timeLeft.toFixed(
+            1
+          )} more second(s) before reusing the 'askai' command.`
+        );
+      }
+    }
     await interaction.deferReply();
+    cooldowns.set(interaction.user.id, Date.now());
+    setTimeout(() => cooldowns.delete(interaction.user.id), 5000);
     const prompt = interaction.options.getString("prompt");
     const temperature = interaction.options.getNumber("temperature") || 0.7;
     if (prompt.length > 2048)

@@ -54,10 +54,8 @@ module.exports = {
         )
     )
     .toJSON(),
-  userPermissions: [PermissionFlagsBits.Administrator],
-  botPermissions: [PermissionFlagsBits.Administrator],
-  testMode: true,
-  devOnly: true,
+  userPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageRoles],
+  botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageRoles],
 
   run: async (client, interaction) => {
     if (interaction.options.getSubcommand() === "set") {
