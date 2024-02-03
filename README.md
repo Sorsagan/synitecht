@@ -1,4 +1,3 @@
-
 # Synitecht
 
 ![Server Count](https://img.shields.io/badge/dynamic/json?color=blue&label=servers&query=%24.server_count&url=https%3A%2F%2Fdiscord-bot-list.com%2Fapi%2Fbots%2F1007699480671432704)
@@ -15,29 +14,31 @@ Synitecht is a powerful Discord bot built using Discord.js v14, designed to enha
 
 **Ticket System:**
 
-+ Create and manage support tickets seamlessly.
-+ Provide a structured way for users to seek assistance.
+- Create and manage support tickets seamlessly.
+- Provide a structured way for users to seek assistance.
 
 **Temporary Voice Channel System:**
 
-+ Dynamically create temporary voice channels on demand.
-+ Automatically delete channels when not in use.
+- Dynamically create temporary voice channels on demand.
+- Automatically delete channels when not in use.
 
 **Rich Command System:**
 
-+ Enjoy a wide range of commands for moderation, utilities, and fun.
-+ Easily configurable to suit your server's needs.
+- Enjoy a wide range of commands for moderation, utilities, and fun.
+- Easily configurable to suit your server's needs.
 
 **Customization:**
 
-+ Tailor Synitecht to your server's unique requirements.
-+ Adjust settings, prefixes, and permissions to fit your community.
+- Tailor Synitecht to your server's unique requirements.
+- Adjust settings, prefixes, and permissions to fit your community.
 
 **User-Friendly Interface:**
 
-+ Intuitive commands for users and administrators alike.
-+ Clear and concise responses for better user interaction.
-## Installation 
+- Intuitive commands for users and administrators alike.
+- Clear and concise responses for better user interaction.
+
+## Installation
+
 - Follow these steps to get started with the project.
 
 **Prerequisites**
@@ -65,10 +66,13 @@ npm install
 ```
 
 **Configuration**
+
 - Copy the .env.example file to .env:
+
 ```bash
 cp .env.example .env
 ```
+
 - Update the variables in the .env file with your configuration.
 
 **Start the Application**
@@ -76,23 +80,27 @@ cp .env.example .env
 ```bash
 nodemon
 ```
+
 or you might wanna use if you don't want nodemon
+
 ```bash
 node .
 ```
+
 ## Screenshots
 
 ### Voice Channel Dashboard
 
 ![Voice Channel Dashboard Screenshot](https://i.imgur.com/slQH2X9.png)
 
-### Auto Mod 
+### Auto Mod
 
 ![Auto Mod Screenshot](https://i.imgur.com/jyAiKO5.png)
 
 ### Giveaways
 
 ![Giveaways Screenshot](https://i.imgur.com/qrruJ5R.png)
+
 ## Roadmap
 
 Our planned features and improvements for future releases.
@@ -100,10 +108,12 @@ Our planned features and improvements for future releases.
 ### Version 2.0.0 (Next Major Release)
 
 - [ ] **Economy System:**
+
   - Introduce a robust economy system to enhance user engagement.
   - Allow users to earn and spend virtual currency within the server.
 
 - [ ] **Music System:**
+
   - Implement a new Music System accessible to all members in the server.
   - Enjoy high-quality music playback with enhanced features.
 
@@ -111,32 +121,38 @@ Our planned features and improvements for future releases.
   - Improve the existing Temporary Voice Channel System for better user experience.
   - Add new customization options and flexibility for managing temporary voice channels.
 
+### Version 1.2.0 (Next Minor Release)
+
+- [ ] **Server Logging:**
+
+  - Enhance server logging functionality to capture and record important events and activities within the server.
+
+- [ ] **Better Interfaces:**
+  - Improve user interfaces across different components for a more intuitive and user-friendly experience.
+
 ### Version 1.1.0 (Upcoming Minor Release)
 
-- [ ] **Bug Fixes:**
-  - Address reported issues and enhance overall stability.
-  
-- [ ] **Optimizations:**
+- [x] **Bug Fixes:**
+
+  - Address reported issues and enhance overall stability. (Some bugs will be fixed in 1.2.0)
+
+- [x] **Optimizations:**
+
   - Implement performance optimizations for smoother execution.
 
 - [ ] **Documentation Updates:**
-  - Enhance user guides and provide clearer documentation.
 
-### Version 1.0.1 (Patch Release)
+  - Enhance user guides and provide clearer documentation. ( Will be added in the v3 or v4 as the bot don't have a dashbord site for now. )
 
-- [x] **Security Patch:**
-  - Address any reported vulnerabilities to ensure a secure environment.
-  
-- [x] **Minor Improvements:**
-  - Implement small updates and fixes to enhance overall functionality.
 ## Contribute
 
 If you have ideas for improvements or want to report issues, feel free to contribute on GitHub.
+
 ## Credits
 
 This project includes code inspired by YouTuber The North Solution's tutorials. Specifically, the following sections were influenced by their work:
 
-- Command, event handling in `handlers/eventHandler.js`: inspired by YouTuber The North Solution's tutorial on error handling.
+- Command, event handling in `handlers/eventHandler.js`: inspired by YouTuber The North Solution's tutorial on event handling.
 - Command Comparing in `commandComparing.js`: inspired by YouTuber The North Solution's command comparing techniques.
 
 You can find his youtube channel in there [The North Solution](https://www.youtube.com/@thenorthsolution)

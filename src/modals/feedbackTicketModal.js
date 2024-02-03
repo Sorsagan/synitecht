@@ -48,7 +48,7 @@ module.exports = {
         .reduce((acc, current) => {
           return acc + current;
         }, 0);
-        const ar = Math.round(allRatings / allTickets.length);
+      const ar = Math.round(allRatings / allTickets.length);
       let averageStars = "";
       for (let i = 0; i < ar; i++) {
         averageStars += ":star:";
@@ -71,7 +71,7 @@ module.exports = {
         content: "Feedback has been submitted",
       });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
   },
 };

@@ -124,7 +124,7 @@ module.exports = {
             closed: false,
             membersAdded: [],
           });
-          await ticket.save().catch(err => console.log(err));
+          await ticket.save().catch((err) => console.log(err));
         }
         return await interaction.editReply({
           content: `Ticket created in ${thread}`,

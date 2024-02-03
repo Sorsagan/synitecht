@@ -70,8 +70,7 @@ module.exports = {
         .setLabel("User Limit")
         .setStyle(ButtonStyle.Secondary)
         .setEmoji("👥")
-        .setDisabled(true),
-    )
+    );
     await interaction.followUp({
       embeds: [voiceChannelSettingsEmbed],
       components: [embedBtns],

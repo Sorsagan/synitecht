@@ -1,4 +1,9 @@
-const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+const {
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+} = require("discord.js");
 
 module.exports = {
   customId: "voiceChannelSettingsUserLimitBtn",
@@ -7,11 +12,11 @@ module.exports = {
 
   run: async (client, interaction) => {
     const changeUserLimitModal = new ModalBuilder()
-    .setTitle("Change Voice Channel User Limit")
-    .setCustomId("chanegeuserlimit_modal")
-    .setComponents(
+      .setTitle("Change Voice Channel User Limit")
+      .setCustomId("chanegeuserlimit_modal")
+      .setComponents(
         new ActionRowBuilder().setComponents(
-            new TextInputBuilder()
+          new TextInputBuilder()
             .setCustomId("new_user_limit")
             .setLabel("New Voice Channel User Limit")
             .setPlaceholder("Enter a new voice channel user limit.")
@@ -20,7 +25,7 @@ module.exports = {
             .setMaxLength(2)
             .setRequired(true)
         )
-    )
+      );
     return await interaction.showModal(changeUserLimitModal);
   },
 };

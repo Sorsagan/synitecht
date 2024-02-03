@@ -1,4 +1,9 @@
-const { ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+const {
+  ModalBuilder,
+  ActionRowBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+} = require("discord.js");
 
 module.exports = {
   customId: "voiceChannelSettingsChannelNameBtn",
@@ -7,11 +12,11 @@ module.exports = {
 
   run: async (client, interaction) => {
     const changeNameModal = new ModalBuilder()
-    .setTitle("Change Voice Channel Name")
-    .setCustomId("chanegename_modal")
-    .setComponents(
+      .setTitle("Change Voice Channel Name")
+      .setCustomId("chanegename_modal")
+      .setComponents(
         new ActionRowBuilder().setComponents(
-            new TextInputBuilder()
+          new TextInputBuilder()
             .setCustomId("new_vc_name")
             .setLabel("New Voice Channel Name")
             .setPlaceholder("Enter a new voice channel name.")
@@ -20,7 +25,7 @@ module.exports = {
             .setMaxLength(100)
             .setRequired(true)
         )
-    )
+      );
     return await interaction.showModal(changeNameModal);
   },
 };

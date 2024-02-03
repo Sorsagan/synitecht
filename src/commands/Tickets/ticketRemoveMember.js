@@ -41,31 +41,31 @@ module.exports = {
           ephemeral: true,
         });
 
-        const threadMember = await channel.members
+      const threadMember = await channel.members
         .fetch(memberToRemove.id)
         .catch((err) => {
           console.log(err);
         });
-      
+
       if (!threadMember)
         return await interaction.editReply({
           content: "This member isn't in the ticket.",
           ephemeral: true,
         });
 
-        await ticketSchema.findOneAndUpdate(
-          {
-            guildId: guild.id,
-            ticketChannelId: channel.id,
-            closed: false,
+      await ticketSchema.findOneAndUpdate(
+        {
+          guildId: guild.id,
+          ticketChannelId: channel.id,
+          closed: false,
+        },
+        {
+          $pull: {
+            membersAdded: memberToRemove.id,
           },
-          {
-            $pull: {
-              membersAdded: memberToRemove.id,
-            },
-          }
-        );
-        ticket.save();
+        }
+      );
+      ticket.save();
 
       await channel.members.remove(memberToRemove.id);
 

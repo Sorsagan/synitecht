@@ -10,7 +10,6 @@ module.exports = {
     const member = guild.members.cache.get(interaction.user.id);
     const voiceChannel = member.voice.channel;
 
-    // Check if the user is in a voice channel
     if (!voiceChannel) {
       return interaction.reply({
         content: `You are not in a voice channel.`,
@@ -18,11 +17,11 @@ module.exports = {
       });
     }
     const voiceChannelOwner = await voiceChannelOwnerSchema.findOne({
-        guildId: guild.id,
-        channelId: voiceChannel.id,
+      guildId: guild.id,
+      channelId: voiceChannel.id,
     });
-    if(voiceChannelOwner.channelId !== voiceChannel.id) {
-        return interaction.reply("You are not the owner of this voice channel.")
+    if (voiceChannelOwner.channelId !== voiceChannel.id) {
+      return interaction.reply("You are not the owner of this voice channel.");
     }
 
     const channel = client.channels.cache.get(voiceChannelOwner.channelId);
@@ -35,18 +34,18 @@ module.exports = {
         ephemeral: true,
       });
     if (newVCName === channelName) {
-      return reply(
+      return interaction.reply(
         "The channel name you entered is the same as the current channel name."
       );
     }
     if (newVCName.length > 100) {
-      return reply("The channel name you entered is too long.");
+      return interaction.reply("The channel name you entered is too long.");
     }
     if (newVCName.length < 2) {
-      return reply("The channel name you entered is too short.");
+      return interaction.reply("The channel name you entered is too short.");
     }
     if (!newVCName) {
-      return reply("You must enter a channel name.");
+      return interaction.reply("You must enter a channel name.");
     }
     if (newVCName) {
       await interaction.deferReply({ ephemeral: true });

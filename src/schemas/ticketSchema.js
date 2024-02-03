@@ -1,6 +1,7 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema } = require("mongoose");
 
-let ticketSchema = new Schema({
+let ticketSchema = new Schema(
+  {
     guildId: String,
     ticketMemberId: String,
     ticketChannelId: String,
@@ -9,9 +10,10 @@ let ticketSchema = new Schema({
     feedback: String,
     closed: Boolean,
     membersAdded: Array,
-},
-{
+  },
+  {
     strict: false,
-});
+  }
+);
 
-module.exports = model('ticket', ticketSchema);
+module.exports = model("ticket", ticketSchema);

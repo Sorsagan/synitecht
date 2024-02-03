@@ -54,8 +54,14 @@ module.exports = {
         )
     )
     .toJSON(),
-  userPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageRoles],
-  botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageRoles],
+  userPermissions: [
+    PermissionFlagsBits.ManageChannels,
+    PermissionFlagsBits.ManageRoles,
+  ],
+  botPermissions: [
+    PermissionFlagsBits.ManageChannels,
+    PermissionFlagsBits.ManageRoles,
+  ],
 
   run: async (client, interaction) => {
     if (interaction.options.getSubcommand() === "set") {
@@ -111,12 +117,16 @@ module.exports = {
       });
       let dataOwnerVC = await voiceChannelOwnerSchema.findOne({
         guildId: interaction.guild.id,
-        channelId: interaction.member.voice.channel.id
-    });
+        channelId: interaction.member.voice.channel.id,
+      });
       if (!dataVC)
         return interaction.reply("There is no main voice channel set.");
-      if(!dataOwnerVC) return interaction.reply("You don't have a voice channel.");
-        if (dataOwnerVC.channelId !== interaction.member.voice.channelId) return interaction.reply("You are not the owner of this voice channel.");
+      if (!dataOwnerVC)
+        return interaction.reply("You don't have a voice channel.");
+      if (dataOwnerVC.channelId !== interaction.member.voice.channelId)
+        return interaction.reply(
+          "You are not the owner of this voice channel."
+        );
       if (dataVC) {
         const embedBtns = new ActionRowBuilder().setComponents(
           new ButtonBuilder()
@@ -148,37 +158,40 @@ module.exports = {
             }\n**Voice Chat Owner**: ${user ? user.user.username : "Unknown"}\n`
           );
 
-         interaction.reply({
+        interaction.reply({
           embeds: [embed],
           components: [embedBtns],
         });
         setTimeout(async () => {
-         const disabledBtns = new ButtonBuilder()
-         .setCustomId("voiceChannelSettingsBtn")
-         .setLabel("Settings")
-         .setStyle(ButtonStyle.Secondary)
-         .setEmoji("⚙️")
-          .setDisabled(true)
-        new ButtonBuilder()
-          .setCustomId("voiceChannelDeleteBtn")
-          .setLabel("Delete")
-          .setStyle(ButtonStyle.Danger)
-          .setEmoji("🗑️")
-          .setDisabled(true)
-        new ButtonBuilder()
-          .setCustomId("cancelBtn")
-          .setLabel("Cancel")
-          .setStyle(ButtonStyle.Danger)
-          .setEmoji("❌")
-          .setDisabled(true)
-        
+          const disabledBtns = new ButtonBuilder()
+            .setCustomId("voiceChannelSettingsBtn")
+            .setLabel("Settings")
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji("⚙️")
+            .setDisabled(true);
+          new ButtonBuilder()
+            .setCustomId("voiceChannelDeleteBtn")
+            .setLabel("Delete")
+            .setStyle(ButtonStyle.Danger)
+            .setEmoji("🗑️")
+            .setDisabled(true);
+          new ButtonBuilder()
+            .setCustomId("cancelBtn")
+            .setLabel("Cancel")
+            .setStyle(ButtonStyle.Danger)
+            .setEmoji("❌")
+            .setDisabled(true);
+
           const newRow = new ActionRowBuilder().setComponents(disabledBtns);
-        
+
           await interaction.editReply({ components: [newRow] });
         }, 30000);
       }
     }
-    if (interaction.options.getSubcommand() === "add" || interaction.options.getSubcommand() === "remove") {
+    if (
+      interaction.options.getSubcommand() === "add" ||
+      interaction.options.getSubcommand() === "remove"
+    ) {
       if (!interaction.member.voice.channel) {
         return interaction.reply({
           content: "You must be in a voice channel to use this command.",
@@ -187,19 +200,21 @@ module.exports = {
       }
       let dataOwnerVC = await voiceChannelOwnerSchema.findOne({
         guildId: interaction.guild.id,
-        channelId: interaction.member.voice.channel.id
+        channelId: interaction.member.voice.channel.id,
       });
       const user = interaction.options.getUser("user");
       const channel = interaction.guild.channels.cache.get(
         dataOwnerVC.channelId
       );
-    
+
       if (channel && user) {
         if (interaction.options.getSubcommand() === "add") {
           await channel.permissionOverwrites.create(user.id, { Connect: true });
           interaction.reply(`Added ${user.username} to the voice channel.`);
         } else if (interaction.options.getSubcommand() === "remove") {
-          await channel.permissionOverwrites.create(user.id, { Connect: false });
+          await channel.permissionOverwrites.create(user.id, {
+            Connect: false,
+          });
           interaction.reply(`Removed ${user.username} from the voice channel.`);
         }
       }

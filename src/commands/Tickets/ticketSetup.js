@@ -44,76 +44,98 @@ module.exports = {
         )
         .setRequired(true)
     ),
-    userPermissions: [PermissionFlagsBits.Administrator],
-    botPermissions: [],
-    run: async (client, interaction) => {
-        try {
-            const {guild, options} = interaction;
-            const ticketChannel = options.getChannel('ticket-channel');
-            const feedbackChannel = options.getChannel('feedback-channel');
-            const staffRole = options.getRole('staff-role');
-            const ticketType = options.getString('ticket-type');
+  userPermissions: [PermissionFlagsBits.Administrator],
+  botPermissions: [],
+  run: async (client, interaction) => {
+    try {
+      const { guild, options } = interaction;
+      const ticketChannel = options.getChannel("ticket-channel");
+      const feedbackChannel = options.getChannel("feedback-channel");
+      const staffRole = options.getRole("staff-role");
+      const ticketType = options.getString("ticket-type");
 
-            await interaction.deferReply({ ephemeral: true });
+      await interaction.deferReply({ ephemeral: true });
 
-            const buttonTicketCreateEmbed = new EmbedBuilder()
-                .setTitle('Ticket System')
-                .setDescription('Click the button below to create a ticket.')
-                .setFooter({text: 'Support Tickets'})
-                .setTimestamp();
+      const buttonTicketCreateEmbed = new EmbedBuilder()
+        .setTitle("Ticket System")
+        .setDescription("Click the button below to create a ticket.")
+        .setFooter({ text: "Support Tickets" })
+        .setTimestamp();
 
-            const modalTicketCreateEmbed = new EmbedBuilder()
-            .setTitle('Ticket System')
-            .setDescription('Click the button below to create a ticket.')
+      const modalTicketCreateEmbed = new EmbedBuilder()
+        .setTitle("Ticket System")
+        .setDescription("Click the button below to create a ticket.")
 
-            .setFooter({text: 'Support Tickets'})
-            .setTimestamp();
+        .setFooter({ text: "Support Tickets" })
+        .setTimestamp();
 
-            const ticketSetupEmbed = new EmbedBuilder()
-                .setTitle('Ticket System')
-                .setDescription('Ticket system setup successfully.\n**Don\'t forget to give members the permmision to send messages in threads.**')
-                .addFields(
-                    { name: 'Ticket Channel', value: `${ticketChannel}`, inline: true },
-                    { name: 'Feedback Channel', value: `${feedbackChannel}`, inline: true },
-                    { name: 'Staff Role', value: `${staffRole}`, inline: true },
-                    { name: 'Ticket Type', value: `${ticketType}`, inline: true },
-                )
-                .setTimestamp();
+      const ticketSetupEmbed = new EmbedBuilder()
+        .setTitle("Ticket System")
+        .setDescription(
+          "Ticket system setup successfully.\n**Don't forget to give members the permmision to send messages in threads.**"
+        )
+        .addFields(
+          { name: "Ticket Channel", value: `${ticketChannel}`, inline: true },
+          {
+            name: "Feedback Channel",
+            value: `${feedbackChannel}`,
+            inline: true,
+          },
+          { name: "Staff Role", value: `${staffRole}`, inline: true },
+          { name: "Ticket Type", value: `${ticketType}`, inline: true }
+        )
+        .setTimestamp();
 
-            const openTicketButton = new ActionRowBuilder().addComponents([
-                new ButtonBuilder()
-                    .setCustomId('openTicketBtn')
-                    .setLabel('Open Ticket')
-                    .setStyle(ButtonStyle.Secondary),
-            ])
+      const openTicketButton = new ActionRowBuilder().addComponents([
+        new ButtonBuilder()
+          .setCustomId("openTicketBtn")
+          .setLabel("Open Ticket")
+          .setStyle(ButtonStyle.Secondary),
+      ]);
 
-            let setupTicket = await ticketSetupSchema.findOne({ ticketChannelId: ticketChannel.id });
+      let setupTicket = await ticketSetupSchema.findOne({
+        ticketChannelId: ticketChannel.id,
+      });
 
-            if(setupTicket){
-                return await interaction.editReply({ embeds: [new EmbedBuilder().setTitle('Ticket System').setDescription('Ticket system already setup.').setColor('Red').setTimestamp()] });
-            } else {
-                setupTicket = await ticketSetupSchema.create({
-                    guildId: guild.id,
-                    feedbackChannelId: feedbackChannel.id,
-                    ticketChannelId: ticketChannel.id,
-                    staffRoleId: staffRole.id,
-                    ticketType: ticketType,
-                });
+      if (setupTicket) {
+        return await interaction.editReply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle("Ticket System")
+              .setDescription("Ticket system already setup.")
+              .setColor("Red")
+              .setTimestamp(),
+          ],
+        });
+      } else {
+        setupTicket = await ticketSetupSchema.create({
+          guildId: guild.id,
+          feedbackChannelId: feedbackChannel.id,
+          ticketChannelId: ticketChannel.id,
+          staffRoleId: staffRole.id,
+          ticketType: ticketType,
+        });
 
-                await setupTicket.save().catch(err => console.log(err));
-            }
+        await setupTicket.save().catch((err) => console.log(err));
+      }
 
-            if(ticketType === 'button'){
-                await ticketChannel.send({ embeds: [buttonTicketCreateEmbed], components: [openTicketButton] });
-            } else {
-                await ticketChannel.send({ embeds: [modalTicketCreateEmbed], components: [openTicketButton]});
-            }
+      if (ticketType === "button") {
+        await ticketChannel.send({
+          embeds: [buttonTicketCreateEmbed],
+          components: [openTicketButton],
+        });
+      } else {
+        await ticketChannel.send({
+          embeds: [modalTicketCreateEmbed],
+          components: [openTicketButton],
+        });
+      }
 
-            return await interaction.editReply({
-                embeds: [ticketSetupEmbed],
-            })
-        } catch (error) {
-            console.log(error);
-        }
+      return await interaction.editReply({
+        embeds: [ticketSetupEmbed],
+      });
+    } catch (error) {
+      console.log(error);
     }
+  },
 };

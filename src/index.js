@@ -46,11 +46,13 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
         guildId: newState.guild.id,
       });
       if (existingChannel) {
-  const existingVoiceChannel = newState.guild.channels.cache.get(existingChannel.channelId);
-  if (existingVoiceChannel) {
-    newState.member.voice.setChannel(existingVoiceChannel);
-  }
-  return;
+        const existingVoiceChannel = newState.guild.channels.cache.get(
+          existingChannel.channelId
+        );
+        if (existingVoiceChannel) {
+          newState.member.voice.setChannel(existingVoiceChannel);
+        }
+        return;
       }
 
       const username = newState.member.user.username;
@@ -93,7 +95,7 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
       const existingTimeout = await channelTimeoutSchema.findOne({
         channelId: oldState.channelId,
       });
-    
+
       if (existingTimeout) {
         // Update the existing timeout
         existingTimeout.timeout = Date.now() + 60000;
