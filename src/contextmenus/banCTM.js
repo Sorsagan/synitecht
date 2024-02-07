@@ -10,7 +10,7 @@ module.exports = {
     .setType(ApplicationCommandType.User),
   userPermissions: [PermissionFlagsBits.BanMembers],
   botPermissions: [PermissionFlagsBits.BanMembers],
-  deleted: true,
+  deleted: true, //deleted due to the fact that this context menu has bugs but it will be fixed in the future
   run: (client, interaction) => {
     const { targetuser, reason } = interaction;
     if (targetuser === null || !targetuser) {

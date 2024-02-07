@@ -4,6 +4,7 @@ const {
   Client,
   GatewayIntentBits,
   PermissionFlagsBits,
+  Partials,
 } = require("discord.js");
 const eventHandler = require("./handlers/eventHandler");
 const { GiveawaysManager } = require("discord-giveaways");
@@ -19,7 +20,9 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.DirectMessages,
   ],
+  partials: [Partials.User, Partials.Channel, Partials.Message],
 });
 
 client.giveawaysManager = new GiveawaysManager(client, {
