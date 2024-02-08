@@ -1,3 +1,5 @@
+// Code snippet inspired by [ The North Solution ](https://www.youtube.com/watch?v=et_bzG3WJDg)
+
 const path = require("path");
 const getAllFiles = require("./getAllFiles");
 
