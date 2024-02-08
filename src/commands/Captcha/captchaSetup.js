@@ -1,11 +1,6 @@
 const {
   SlashCommandBuilder,
-  PermissionFlagsBits,
-  ChannelType,
-  EmbedBuilder,
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
+  PermissionFlagsBits
 } = require("discord.js");
 const captchaSchema = require("../../schemas/captchaSetupSchema");
 
@@ -16,7 +11,7 @@ module.exports = {
     .addChannelOption((option) =>
       option
         .setName("captcha-channel")
-        .setDescription("The channel where captcha will be created.")
+        .setDescription("The channel where captcha logs will be sent.")
         .setRequired(true)
     )
     .addRoleOption((option) =>
@@ -27,7 +22,6 @@ module.exports = {
     ),
   userPermissions: [PermissionFlagsBits.Administrator],
   botPermissions: [],
-  devMode: true,
   run: async (client, interaction) => {
     try {
       if (interaction.options.getChannel("captcha-channel").type !== 0) {

@@ -123,26 +123,16 @@ Our planned features and improvements for future releases.
 
 ### Version 1.2.0 (Next Minor Release)
 
+- [x] **Captcha System:**
+
+  - A security feature that generates a unique captcha for each new server member. It helps prevent bot attacks by verifying that users are genuine before granting full server access.
+
 - [ ] **Server Logging:**
 
   - Enhance server logging functionality to capture and record important events and activities within the server.
 
 - [ ] **Better Interfaces:**
   - Improve user interfaces across different components for a more intuitive and user-friendly experience.
-
-### Version 1.1.0 (Upcoming Minor Release)
-
-- [x] **Bug Fixes:**
-
-  - Address reported issues and enhance overall stability. (Some bugs will be fixed in 1.2.0)
-
-- [x] **Optimizations:**
-
-  - Implement performance optimizations for smoother execution.
-
-- [ ] **Documentation Updates:**
-
-  - Enhance user guides and provide clearer documentation. ( Will be added in the v3 or v4 as the bot don't have a dashbord site for now. )
 
 ## Contribute
 

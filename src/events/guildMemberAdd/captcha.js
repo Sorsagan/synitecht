@@ -1,8 +1,17 @@
-const { Collection, AttachmentBuilder } = require("discord.js");
+/*                 _ _            _     _   
+                (_) |          | |   | |  
+ ___ _   _ _ __  _| |_ ___  ___| |__ | |_ 
+/ __| | | | '_ \| | __/ _ \/ __| '_ \| __|
+\__ \ |_| | | | | | ||  __/ (__| | | | |_ 
+|___/\__, |_| |_|_|\__\___|\___|_| |_|\__|
+      __/ |                               
+     |___/                                
+*/
 const captchaSetupSchema = require("../../schemas/captchaSetupSchema");
 const captchaSchema = require("../../schemas/captchaSchema");
 const svgCaptcha = require("svg-captcha");
 const sharp = require("sharp");
+const { AttachmentBuilder } = require("discord.js");
 async function generateCaptcha() {
   const captcha = svgCaptcha.create({
     size: 6, // size of random string
@@ -33,26 +42,30 @@ async function isCaptchaSetForServer(guildId) {
   return true;
 }
 module.exports = async (client, member) => {
-  if (await isCaptchaSetForServer(member.guild.id)) {
-    const captcha = await generateCaptcha();
+  try {
+    const existingCaptcha = await captchaSchema.findOne({ userId: member.id });
+    if (existingCaptcha) {
+      member.send(`A captcha already exists for you. Please complete it to verify yourself.`);
+      return;
+    }
 
-    const captchaData = new captchaSchema({
-      userId: member.id,
-      captchaText: captcha.text,
-      guildUserFrom: member.guild.id,
-    });
+    if (await isCaptchaSetForServer(member.guild.id)) {
+      const captcha = await generateCaptcha();
 
-    try {
-      await captchaData.save();
-      const attachment = new AttachmentBuilder(captcha.data, {
-        name: "captcha.png",
+      const captchaData = new captchaSchema({
+        userId: member.id,
+        captchaText: captcha.text,
+        guildUserFrom: member.guild.id,
       });
+
+      await captchaData.save();
+      const attachment = new AttachmentBuilder(captcha.data, { name: "captcha.png" });
       await member.send({
         content: `Welcome to the **${member.guild.name}**! Please complete this captcha in **5 minutes** to verify yourself:`,
         files: [attachment],
       });
-    } catch (error) {
-      console.error(`Could not send captcha to ${member.displayName}: `, error);
     }
+  } catch (error) {
+    console.error(`An error occurred: ${error.message}`);
   }
 };
