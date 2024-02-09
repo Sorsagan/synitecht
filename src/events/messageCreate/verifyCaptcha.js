@@ -11,13 +11,17 @@ const captchaSchema = require("../../schemas/captchaSchema");
 const captchaSetupSchema = require("../../schemas/captchaSetupSchema");
 
 module.exports = async (client, message) => {
+  let captchaSchemalogchannel;
   try {
     if (message.author.bot) return;
 
     if (message.channel.type === 1) {
       const captchaSchemaData = await captchaSchema.findOne({ userId: message.author.id });
 
-      if (captchaSchemaData && message.content === captchaSchemaData.captchaSchemaText) {
+      console.log(`User message: ${message.content}`);
+      console.log(`Stored captcha: ${captchaSchemaData ? captchaSchemaData.captchaText : 'No captcha found'}`);
+
+      if (captchaSchemaData && message.content === captchaSchemaData.captchaText) {
         const captchaSchemaSetup = await captchaSetupSchema.findOne({
           guildId: captchaSchemaData.guildUserFrom,
         });
@@ -29,14 +33,14 @@ module.exports = async (client, message) => {
         }
         await captchaSchema.deleteOne({ userId: message.author.id });
         message.reply("You have been verified!");
-        const captchaSchemalogchannel = client.channels.cache.get(
+        captchaSchemalogchannel = client.channels.cache.get(
           captchaSchemaSetup.channelId
         );
         captchaSchemalogchannel.send(
-          `User ${message.author} has been verified by captchaSchema.`
+          `User ${message.author} has been verified by captcha.`
         );
         const guild = client.guilds.cache.get(captchaSchemaData.guildUserFrom);
-        const member = guild.members.cache.get(message.author.id);
+        const member = await guild.members.fetch(message.author.id);
         member.roles.add(captchaSchemaSetup.roleId);
       } else if (captchaSchemaData) {
         message.reply("Incorrect captchaSchema, please try again.");
@@ -44,8 +48,10 @@ module.exports = async (client, message) => {
     }
   } catch (error) {
     console.error(error);
-    captchaSchemalogchannel.send(
-      `Something went wrong when verifying user ${message.author}: ${error.message}`
-    );
+    if (captchaSchemalogchannel) {
+      captchaSchemalogchannel.send(
+        `Something went wrong when verifying user ${message.author}: ${error.message}`
+      );
+    }
   }
 };

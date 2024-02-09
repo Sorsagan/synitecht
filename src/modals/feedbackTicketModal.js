@@ -5,7 +5,7 @@ const ticketSetupSchema = require("../schemas/ticketSetupSchema");
 const ticketSchema = require("../schemas/ticketSchema");
 
 module.exports = {
-  customI: "feedbackMdl",
+  customId: "feedbackMdl",
   userPermissions: [],
   botPermissions: [],
   run: async (client, interaction) => {
@@ -34,17 +34,17 @@ module.exports = {
         guildId: guild.id,
         ticketChannelId: channel.id,
       });
-      await ticket.findOneAndUpdate(
-        { guildId: guild.id, ticketChannelId: channel.id },
-        { feedbackMessage: feedbackMessage, rating: rating }
-      );
+      await ticket.updateOne({
+        rating,
+        feedback: feedbackMessage,
+    });
       let stars = "";
       for (let i = 0; i < rating; i++) {
         stars += ":star:";
       }
       const allTickets = await ticketSchema.find({ guildId: guild.id });
       const allRatings = allTickets
-        .map((t) => (t.rating !== null ? t.rating : 0))
+        .map((t) => (t.rating !== undefined ? t.rating : 0))
         .reduce((acc, current) => {
           return acc + current;
         }, 0);
@@ -59,14 +59,18 @@ module.exports = {
         .setDescription(
           `**Rating** ${stars}\n**Feedback** ${feedbackMessage}\n**Average Rating** ${averageStars}`
         )
-        .setFooter(`Ticket ID: ${ticket.ticketId}`);
+        .setFooter({
+          text: `${member.user.tag} | ${member.user.id}`,
+          iconURL: guild.iconURL({ dynamic: true }),
+        })
+        .setTimestamp()
 
       await guild.channels.cache
         .get(ticketSetup.feedbackChannelId)
         .send({ embeds: [feedbackEmbed] });
 
-      message.componenets[0].componenets[2].data.disabled = true;
-      await message.edit({ componenets: message.componenets[0] });
+      message.components[0].components[2].data.disabled = true;
+      await message.edit({ components: [message.components[0]] });
       return await interaction.editReply({
         content: "Feedback has been submitted",
       });

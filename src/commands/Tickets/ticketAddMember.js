@@ -17,7 +17,7 @@ module.exports = {
   run: async (client, interaction) => {
     try {
       const { channel, options, guild } = interaction;
-      await interaction.deferReply();
+      await interaction.deferReply({ephemeral: true});
 
       const memberToAdd = options.getUser("member");
 
