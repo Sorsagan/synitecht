@@ -125,18 +125,11 @@ Our planned features and improvements for future releases.
   - Improve the existing Temporary Voice Channel System for better user experience.
   - Add new customization options and flexibility for managing temporary voice channels.
 
-### Version 1.2.0 (Next Minor Release)
-
-- [x] **Captcha System:**
-
-  - A security feature that generates a unique captcha for each new server member. It helps prevent bot attacks by verifying that users are genuine before granting full server access.
+### Version 1.3.0 (Next Minor Release)
 
 - [ ] **Server Logging:**
 
   - Enhance server logging functionality to capture and record important events and activities within the server.
-
-- [x] **Better Interfaces:**
-  - Improve user interfaces across different components for a more intuitive and user-friendly experience.
 
 ## Contribute
 
