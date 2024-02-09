@@ -16,7 +16,8 @@ module.exports = {
   botPermissions: [PermissionFlagsBits.ManageMessages],
   deleted: true, //deleted due to the fact that this command has bugs but it will be fixed in the future
   run: async (client, interaction) => {
-    let amount = interaction.options.getNumber("number");d
+    let amount = interaction.options.getNumber("number");
+    d;
     if (amount >= 100) amount = 100;
     if (amount < 1) amount = 1;
 

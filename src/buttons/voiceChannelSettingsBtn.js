@@ -13,7 +13,7 @@ module.exports = {
   botPermissions: [],
 
   run: async (client, interaction) => {
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
     const guild = client.guilds.cache.get(interaction.guildId);
     const member = guild.members.cache.get(interaction.user.id);
     const voiceChannel = member.voice.channel;
@@ -76,5 +76,38 @@ module.exports = {
       components: [embedBtns],
       ephemeral: true,
     });
+
+    setTimeout(async () => {
+      const disabledBtns = new ActionRowBuilder().setComponents(
+        new ButtonBuilder()
+          .setCustomId("voiceChannelSettingsChannelNameBtn")
+          .setLabel("Channel Name")
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji("📝")
+          .setDisabled(true),
+        new ButtonBuilder()
+          .setCustomId("voiceChannelSettingsLockStatusBtn")
+          .setLabel("Lock Status")
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji("🔒")
+          .setDisabled(true),
+        new ButtonBuilder()
+          .setCustomId("voiceChannelSettingsUserLimitBtn")
+          .setLabel("User Limit")
+          .setStyle(ButtonStyle.Secondary)
+          .setEmoji("👥")
+          .setDisabled(true)
+      );
+
+      if (interaction.message) {
+        await interaction.editReply({
+          embeds: [voiceChannelSettingsEmbed],
+          components: [disabledBtns],
+          ephemeral: true,
+        });
+      }
+    }, 30000);
+
+    return await interaction.message.delete();
   },
 };

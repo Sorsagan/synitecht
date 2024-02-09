@@ -20,6 +20,7 @@ module.exports = {
         await channelTimeoutSchema.findOneAndDelete({
           channelId: voiceChannelId,
         });
+        return await interaction.message.delete();
       } else {
         interaction.reply("Failed to find voice channel.");
       }

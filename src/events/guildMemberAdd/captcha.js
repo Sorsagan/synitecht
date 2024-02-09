@@ -45,7 +45,19 @@ module.exports = async (client, member) => {
   try {
     const existingCaptcha = await captchaSchema.findOne({ userId: member.id });
     if (existingCaptcha) {
-      member.send(`A captcha already exists for you. Please complete it to verify yourself.`);
+      try {
+        await member.send(
+          `A captcha already exists for you. Please complete it to verify yourself.`
+        );
+      } catch (error) {
+        if (error.message.includes("Cannot send messages to this user")) {
+          console.error(
+            `Failed to send DM to user ${member.id}. User has DMs disabled.`
+          );
+          return;
+        }
+        throw error;
+      }
       return;
     }
 
@@ -59,11 +71,23 @@ module.exports = async (client, member) => {
       });
 
       await captchaData.save();
-      const attachment = new AttachmentBuilder(captcha.data, { name: "captcha.png" });
-      await member.send({
-        content: `Welcome to the **${member.guild.name}**! Please complete this captcha in **5 minutes** to verify yourself:`,
-        files: [attachment],
+      const attachment = new AttachmentBuilder(captcha.data, {
+        name: "captcha.png",
       });
+      try {
+        await member.send({
+          content: `Welcome to the **${member.guild.name}**! Please complete this captcha in **5 minutes** to verify yourself:`,
+          files: [attachment],
+        });
+      } catch (error) {
+        if (error.message.includes("Cannot send messages to this user")) {
+          console.error(
+            `Failed to send DM to user ${member.id}. User has DMs disabled.`
+          );
+          return;
+        }
+        throw error;
+      }
     }
   } catch (error) {
     console.error(`An error occurred: ${error.message}`);

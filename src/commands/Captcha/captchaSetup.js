@@ -1,7 +1,4 @@
-const {
-  SlashCommandBuilder,
-  PermissionFlagsBits
-} = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const captchaSchema = require("../../schemas/captchaSetupSchema");
 
 module.exports = {

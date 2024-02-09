@@ -22,7 +22,10 @@ module.exports = {
       channelId: voiceChannel.id,
     });
     if (voiceChannelOwner.channelId !== voiceChannel.id) {
-      return interaction.reply("You are not the owner of this voice channel.");
+      return interaction.reply({
+        content: "You are not the owner of this voice channel.",
+        ephemeral: true,
+      });
     }
 
     const channel = client.channels.cache.get(voiceChannelOwner.channelId);
@@ -38,33 +41,44 @@ module.exports = {
         ephemeral: true,
       });
     if (newVCUserLimit === channelUserLimit) {
-      return interaction.reply(
-        "The channel limit you entered is the same as the current channel limit."
-      );
+      return interaction.reply({
+        content:
+          "The channel limit you entered is the same as the current channel limit.",
+        ephemeral: true,
+      });
     }
     if (newVCUserLimit > 99) {
-      return interaction.reply(
-        "The channel limit you entered can't be more than 99."
-      );
+      return interaction.reply({
+        content: "The channel limit you entered can't be more than 99.",
+        ephemeral: true,
+      });
     }
     if (newVCUserLimit < 1) {
-      return interaction.reply(
-        "The channel limit you entered can't be lower than 1."
-      );
+      return interaction.reply({
+        content: "The channel limit you entered can't be lower than 1.",
+        ephemeral: true,
+      });
     }
     if (!newVCUserLimit) {
-      return interaction.reply("You must enter an valid user limit. Ex: 34.");
+      return interaction.reply({
+        content: "You must enter an valid user limit. Ex: 34.",
+        ephemeral: true,
+      });
     }
     if (isNaN(newVCUserLimit)) {
-      return interaction.reply(
-        "The user limit you entered is not a valid number."
-      );
+      return interaction.reply({
+        content: "The user limit you entered is not a valid number.",
+        ephemeral: true,
+      });
     }
     if (newVCUserLimit) {
       await interaction.deferReply({ ephemeral: true });
       await channel.setUserLimit(newVCUserLimit);
-      interaction.editReply("Voice channel user limit changed.");
-      console.log(`Voice channel name changed to ${newVCUserLimit}`);
+      await interaction.editReply({
+        content: "Voice channel user limit changed.",
+        ephemeral: true,
+      });
+      console.log(`Voice channel limit changed to ${newVCUserLimit}`);
     }
   },
 };

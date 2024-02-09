@@ -21,7 +21,10 @@ module.exports = {
       channelId: voiceChannel.id,
     });
     if (voiceChannelOwner.channelId !== voiceChannel.id) {
-      return interaction.reply("You are not the owner of this voice channel.");
+      return interaction.reply({
+        content: "You are not the owner of this voice channel.",
+        ephemeral: true,
+      });
     }
 
     const channel = client.channels.cache.get(voiceChannelOwner.channelId);
@@ -34,23 +37,36 @@ module.exports = {
         ephemeral: true,
       });
     if (newVCName === channelName) {
-      return interaction.reply(
-        "The channel name you entered is the same as the current channel name."
-      );
+      return interaction.reply({
+        content: "The channel name you entered is the same as the current channel name.",
+        ephemeral: true,
+      });
     }
     if (newVCName.length > 100) {
-      return interaction.reply("The channel name you entered is too long.");
+      return interaction.reply({
+        content: "The channel name you entered is too long.",
+        ephemeral: true,
+      });
     }
     if (newVCName.length < 2) {
-      return interaction.reply("The channel name you entered is too short.");
+      return interaction.reply({
+        content: "The channel name you entered is too short.",
+        ephemeral: true,
+      });
     }
     if (!newVCName) {
-      return interaction.reply("You must enter a channel name.");
+      return interaction.reply({
+        content: "You must enter a channel name.",
+        ephemeral: true,
+      });
     }
     if (newVCName) {
       await interaction.deferReply({ ephemeral: true });
       await channel.setName(newVCName);
-      interaction.editReply("Voice channel name changed.");
+      await interaction.editReply({
+        content: "Voice channel name changed.",
+        ephemeral: true,
+      });
       console.log(`Voice channel name changed to ${newVCName}`);
     }
   },

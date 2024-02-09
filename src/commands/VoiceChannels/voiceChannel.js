@@ -80,17 +80,20 @@ module.exports = {
             guildId: interaction.guild.id,
             channelId: interaction.options.getChannel("channel").id,
           });
-          return interaction.reply(
-            `The main voice channel has been set to ${
+          return interaction.reply({
+            content: `The main voice channel has been set to ${
               interaction.options.getChannel("channel").name
-            }.`
-          );
+            }.`,
+            ephemeral: true,
+          });
         }
         if (dataVC) {
           if (dataVC.channelId === interaction.options.getChannel("channel").id)
-            return interaction.reply(
-              "The channel you mentioned is already the main voice channel."
-            );
+            return interaction.reply({
+              content:
+                "The channel you mentioned is already the main voice channel.",
+              ephemeral: true,
+            });
           await voiceChannelSchema.findOneAndUpdate(
             {
               guildId: interaction.guild.id,
@@ -99,11 +102,12 @@ module.exports = {
               channelId: interaction.options.getChannel("channel").id,
             }
           );
-          return interaction.reply(
-            `The main voice channel has been set to ${
+          return interaction.reply({
+            content: `The main voice channel has been set to ${
               interaction.options.getChannel("channel").name
-            }.`
-          );
+            }.`,
+            ephemeral: true,
+          });
         }
       }
 
@@ -122,13 +126,20 @@ module.exports = {
           channelId: interaction.member.voice.channel.id,
         });
         if (!dataVC)
-          return interaction.reply("There is no main voice channel set.");
+          return interaction.reply({
+            content: "There is no main voice channel set.",
+            ephemeral: true,
+          });
         if (!dataOwnerVC)
-          return interaction.reply("You don't have a voice channel.");
+          return interaction.reply({
+            content: "You don't have a voice channel.",
+            ephemeral: true,
+          });
         if (dataOwnerVC.channelId !== interaction.member.voice.channelId)
-          return interaction.reply(
-            "You are not the owner of this voice channel."
-          );
+          return interaction.reply({
+            content: "You are not the owner of this voice channel.",
+            ephemeral: true,
+          });
         if (dataVC) {
           const embedBtns = new ActionRowBuilder().setComponents(
             new ButtonBuilder()
@@ -165,30 +176,36 @@ module.exports = {
           interaction.reply({
             embeds: [embed],
             components: [embedBtns],
+            ephemeral: true,
           });
           setTimeout(async () => {
-            const disabledBtns = new ButtonBuilder()
-              .setCustomId("voiceChannelSettingsBtn")
-              .setLabel("Settings")
-              .setStyle(ButtonStyle.Secondary)
-              .setEmoji("⚙️")
-              .setDisabled(true);
-            new ButtonBuilder()
-              .setCustomId("voiceChannelDeleteBtn")
-              .setLabel("Delete")
-              .setStyle(ButtonStyle.Danger)
-              .setEmoji("🗑️")
-              .setDisabled(true);
-            new ButtonBuilder()
-              .setCustomId("cancelBtn")
-              .setLabel("Cancel")
-              .setStyle(ButtonStyle.Danger)
-              .setEmoji("❌")
-              .setDisabled(true);
+            if (interaction.message) {
+              const disabledBtns = new ButtonBuilder()
+                .setCustomId("voiceChannelSettingsBtn")
+                .setLabel("Settings")
+                .setStyle(ButtonStyle.Secondary)
+                .setEmoji("⚙️")
+                .setDisabled(true);
+              new ButtonBuilder()
+                .setCustomId("voiceChannelDeleteBtn")
+                .setLabel("Delete")
+                .setStyle(ButtonStyle.Danger)
+                .setEmoji("🗑️")
+                .setDisabled(true);
+              new ButtonBuilder()
+                .setCustomId("cancelBtn")
+                .setLabel("Cancel")
+                .setStyle(ButtonStyle.Danger)
+                .setEmoji("❌")
+                .setDisabled(true);
 
-            const newRow = new ActionRowBuilder().setComponents(disabledBtns);
+              const newRow = new ActionRowBuilder().setComponents(disabledBtns);
 
-            await interaction.editReply({ components: [newRow] });
+              await interaction.editReply({
+                components: [newRow],
+                ephemeral: true,
+              });
+            }
           }, 30000);
         }
       }
@@ -217,14 +234,18 @@ module.exports = {
             await channel.permissionOverwrites.create(user.id, {
               Connect: true,
             });
-            interaction.reply(`Added ${user.username} to the voice channel.`);
+            interaction.reply({
+              content: `Added ${user.username} to the voice channel.`,
+              ephemeral: true,
+            });
           } else if (interaction.options.getSubcommand() === "remove") {
             await channel.permissionOverwrites.create(user.id, {
               Connect: false,
             });
-            interaction.reply(
-              `Removed ${user.username} from the voice channel.`
-            );
+            interaction.reply({
+              content: `Removed ${user.username} from the voice channel.`,
+              ephemeral: true,
+            });
           }
         }
       }

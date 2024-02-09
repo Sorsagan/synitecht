@@ -37,7 +37,7 @@ module.exports = {
       await ticket.updateOne({
         rating,
         feedback: feedbackMessage,
-    });
+      });
       let stars = "";
       for (let i = 0; i < rating; i++) {
         stars += ":star:";
@@ -63,7 +63,7 @@ module.exports = {
           text: `${member.user.tag} | ${member.user.id}`,
           iconURL: guild.iconURL({ dynamic: true }),
         })
-        .setTimestamp()
+        .setTimestamp();
 
       await guild.channels.cache
         .get(ticketSetup.feedbackChannelId)

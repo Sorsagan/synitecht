@@ -91,15 +91,19 @@ node .
 
 ### Voice Channel Dashboard
 
-![Voice Channel Dashboard Screenshot](https://i.imgur.com/slQH2X9.png)
+![Voice Channel Dashboard Screenshot](./assets/voiceChannelDashboardScreenShot.png)
 
 ### Auto Mod
 
-![Auto Mod Screenshot](https://i.imgur.com/jyAiKO5.png)
+![Auto Mod Screenshot](./assets/autoModScreenShot.png)
 
 ### Giveaways
 
-![Giveaways Screenshot](https://i.imgur.com/qrruJ5R.png)
+![Giveaways Screenshot](./assets/giveawayScreenshot.png)
+
+### Captcha
+
+![Captcha Screenshot](./assets/captchaScreenShot.jpg)
 
 ## Roadmap
 
@@ -131,7 +135,7 @@ Our planned features and improvements for future releases.
 
   - Enhance server logging functionality to capture and record important events and activities within the server.
 
-- [ ] **Better Interfaces:**
+- [x] **Better Interfaces:**
   - Improve user interfaces across different components for a more intuitive and user-friendly experience.
 
 ## Contribute

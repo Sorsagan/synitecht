@@ -16,12 +16,21 @@ module.exports = async (client, message) => {
     if (message.author.bot) return;
 
     if (message.channel.type === 1) {
-      const captchaSchemaData = await captchaSchema.findOne({ userId: message.author.id });
+      const captchaSchemaData = await captchaSchema.findOne({
+        userId: message.author.id,
+      });
 
       console.log(`User message: ${message.content}`);
-      console.log(`Stored captcha: ${captchaSchemaData ? captchaSchemaData.captchaText : 'No captcha found'}`);
+      console.log(
+        `Stored captcha: ${
+          captchaSchemaData ? captchaSchemaData.captchaText : "No captcha found"
+        }`
+      );
 
-      if (captchaSchemaData && message.content === captchaSchemaData.captchaText) {
+      if (
+        captchaSchemaData &&
+        message.content === captchaSchemaData.captchaText
+      ) {
         const captchaSchemaSetup = await captchaSetupSchema.findOne({
           guildId: captchaSchemaData.guildUserFrom,
         });
