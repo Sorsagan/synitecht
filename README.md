@@ -1,10 +1,16 @@
-# Synitecht
+<p align="center">
+  <a href="https://github.com/Sorsagan/synitecht" target="blank"><img src="/assets/synitecht.png" width="120" alt="Synitecht Logo" /></a>
+</p>
 
-![Server Count](https://img.shields.io/badge/dynamic/json?color=blue&label=servers&query=%24.server_count&url=https%3A%2F%2Fdiscord-bot-list.com%2Fapi%2Fbots%2F1007699480671432704)
-![GitHub stars](https://img.shields.io/github/stars/Sorsagan/synitecht?style=social)
-![Latest Release](https://img.shields.io/github/v/release/Sorsagan/synitecht)
-[![CodeFactor](https://www.codefactor.io/repository/github/sorsagan/synitecht/badge)](https://www.codefactor.io/repository/github/sorsagan/synitecht)
-[![Discord Server](https://img.shields.io/discord/882383171323314186?label=Join%20our%20Discord&logo=discord&logoColor=white&color=7289DA)](https://discord.gg/khNBFw8DrU)
+  <p align="center">Multi-functional <a href="https://discord.js.org" target="_blank">Discord.js</a> based disdcord bot.</p>
+    <p align="center">
+<a href="https://github.com/Sorsagan/synitecht/releases" target="_blank"><img src="https://img.shields.io/github/downloads/sorsagan/synitecht/total" alt="Downloads" /></a>
+<a href="https://github.com/Sorsagan/synitecht/releases" target="_blank"><img src="https://img.shields.io/github/v/release/Sorsagan/synitecht?color=#d3ffce" alt="Latest Release" /></a>
+<a href="https://discord.gg/Crds8Skmef" target="_blank"><img src="https://img.shields.io/discord/882383171323314186?color=34ea00&label=discord" alt="Discord"/></a>
+<a href="https://github.com/Sorsagan/synitecht" target="_blank"><img src="https://img.shields.io/github/stars/sorsagan/synitecht?style=flat&color=dfbc64" alt="Github Stars" /></a>
+<a href="" target="_blank"><img src="https://img.shields.io/codefactor/grade/github/sorsagan/synitecht?style=flat" alt="Codefactor" /></a>
+<a href="https://www.buymeacoffee.com/sorsagan" target="_blank"><img src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-244388?logo=buy-me-a-coffee"/></a>
+</p>
 
 ## Description
 
