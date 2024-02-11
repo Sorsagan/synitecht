@@ -8,7 +8,7 @@
 <a href="https://github.com/Sorsagan/synitecht/releases" target="_blank"><img src="https://img.shields.io/github/v/release/Sorsagan/synitecht?color=#d3ffce" alt="Latest Release" /></a>
 <a href="https://discord.gg/Crds8Skmef" target="_blank"><img src="https://img.shields.io/discord/882383171323314186?color=34ea00&label=discord" alt="Discord"/></a>
 <a href="https://github.com/Sorsagan/synitecht" target="_blank"><img src="https://img.shields.io/github/stars/sorsagan/synitecht?style=flat&color=dfbc64" alt="Github Stars" /></a>
-<a href="" target="_blank"><img src="https://img.shields.io/codefactor/grade/github/sorsagan/synitecht?style=flat" alt="Codefactor" /></a>
+<a href="https://www.codefactor.io/repository/github/sorsagan/synitecht" target="_blank"><img src="https://img.shields.io/codefactor/grade/github/sorsagan/synitecht?style=flat" alt="Codefactor" /></a>
 <a href="https://www.buymeacoffee.com/sorsagan" target="_blank"><img src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-244388?logo=buy-me-a-coffee"/></a>
 </p>
 
