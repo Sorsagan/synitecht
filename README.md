@@ -16,6 +16,16 @@
 
 Synitecht is a powerful Discord bot built using Discord.js v14, designed to enhance your server experience with a variety of features. Whether you're managing a community, gaming server, or a support hub, Synitecht has you covered with its versatile capabilities.
 
+
+
+## Contributing
+
+Contributions are always welcome!
+
+For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests.
+
 ## Key Features:
 
 **Ticket System:**
@@ -136,10 +146,6 @@ Our planned features and improvements for future releases.
 - [ ] **Server Logging:**
 
   - Enhance server logging functionality to capture and record important events and activities within the server.
-
-## Contribute
-
-If you have ideas for improvements or want to report issues, feel free to contribute on GitHub.
 
 ## Credits
 
