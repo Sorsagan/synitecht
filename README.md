@@ -109,6 +109,12 @@ node .
 
 Our planned features and improvements for future releases.
 
+### Version 1.3.0 (Next Minor Release)
+
+- [ ] **Server Logging:**
+
+  - Enhance server logging functionality to capture and record important events and activities within the server.
+
 ### Version 2.0.0 (Next Major Release)
 
 - [ ] **Economy System:**
@@ -124,12 +130,6 @@ Our planned features and improvements for future releases.
 - [ ] **Temporary Voice Channel System Enhancement:**
   - Improve the existing Temporary Voice Channel System for better user experience.
   - Add new customization options and flexibility for managing temporary voice channels.
-
-### Version 1.3.0 (Next Minor Release)
-
-- [ ] **Server Logging:**
-
-  - Enhance server logging functionality to capture and record important events and activities within the server.
 
 ## Contribute
 

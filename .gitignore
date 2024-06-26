@@ -98,3 +98,6 @@ dist
 /giveaways.json
 /package-lock.json
 /nodemon.json
+
+docker-compose.yml
+.dockerignore
